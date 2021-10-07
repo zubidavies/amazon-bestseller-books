@@ -1,0 +1,55 @@
+--Overview of the entire dataset. 
+SELECT *
+FROM bestsellerbooks; 
+
+
+--Selection of the Non-Fiction books. 
+SELECT Name, Author, Price, Genre, Year
+FROM bestsellerbooks
+WHERE Genre <> 'Fiction'; 
+
+
+--A Selection of the Fiction Books. 
+SELECT Name, Author, Price, Genre, Year
+FROM bestsellerbooks
+WHERE Genre = 'Fiction';
+
+--Books with a user rating of over 4.0
+SELECT Name, Author, User_Rating, Genre
+FROM bestsellerbooks
+WHERE User_Rating > 4.0
+ORDER BY User_Rating DESC;
+
+
+--Highest Rated Non-Fiction Books 
+SELECT Name, Author, User_Rating, Genre
+FROM bestsellerbooks
+WHERE User_Rating IN ('4.9')
+ AND Genre <> 'Fiction'
+ORDER BY Name;
+
+
+--Authors and number of books published.
+SELECT Author, COUNT(*) AS AuthorBookCount
+FROM bestsellerbooks
+GROUP BY Author
+ORDER BY AuthorBookCount DESC;
+
+
+--Titles by Total Number of Reviews. 
+SELECT DISTINCT Name, Reviews
+FROM bestsellerbooks
+ORDER BY Reviews DESC;
+
+
+--Callout of Books by Stephen King
+SELECT *
+FROM bestsellerbooks
+WHERE Author = 'Stephen King'
+ORDER BY Reviews DESC;
+
+
+--Showing Titles by Year of Publishing from the Oldest to the Most Recent
+SELECT DISTINCT Name, Year
+FROM bestsellerbooks
+ORDER BY Year ASC;
